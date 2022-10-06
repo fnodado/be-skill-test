@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -15,10 +16,10 @@ import javax.persistence.Table;
 @Table(name = "Business")
 public class Business {
 
-	@Column(name = "business_id")
-	@GeneratedValue
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	private Integer business_id;
+	private Integer id;
 
 	@Column(name = "businessName")
 	private String businessName;
@@ -26,27 +27,29 @@ public class Business {
 	@Column(name = "address")
 	private String address;
 
-	@OneToMany(mappedBy = "business", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "business", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Review> reviewList;
+	
+	@Column(name="phone")
+	private String phone;
 
 	public Business() {
 		super();
 	}
 
-	public Business(Integer business_id, String businessName, String address) {
+	public Business(Integer id, String businessName, String address) {
 		super();
-		this.business_id = business_id;
+		this.id = id;
 		this.businessName = businessName;
 		this.address = address;
 	}
 
-	public Integer getBusinessId() {
-		return business_id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setBusinessId(Integer business_id) {
-		this.business_id = business_id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getBusinessName() {
@@ -63,6 +66,14 @@ public class Business {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 }

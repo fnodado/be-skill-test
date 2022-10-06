@@ -8,6 +8,6 @@ public interface IReviewService {
 
 	List<Review> findByBusiness(Integer id);
 
-	void insert(Review review);
+	void insert(Integer id, Review review);
 
 }
